@@ -45,7 +45,6 @@ const portfolioData = {
             "title": "Getting Started with Flutter State Management",
             "excerpt": "A comprehensive guide to managing state in Flutter applications using BLoC pattern and other popular approaches.",
             "date": "2024-01-15",
-            "readTime": "8 min read",
             "tags": ["Flutter", "State Management", "BLoC"],
             "icon": "fas fa-mobile-alt"
         },
@@ -53,7 +52,6 @@ const portfolioData = {
             "title": "Building Scalable APIs with Node.js",
             "excerpt": "Best practices for creating robust and scalable REST APIs using Node.js, Express, and MongoDB.",
             "date": "2024-01-08",
-            "readTime": "12 min read",
             "tags": ["Node.js", "API", "Backend"],
             "icon": "fab fa-node-js"
         },
@@ -61,7 +59,6 @@ const portfolioData = {
             "title": "Mobile App Performance Optimization",
             "excerpt": "Tips and techniques to optimize your Flutter apps for better performance and user experience.",
             "date": "2024-01-01",
-            "readTime": "10 min read",
             "tags": ["Flutter", "Performance", "Optimization"],
             "icon": "fas fa-rocket"
         }
@@ -217,7 +214,6 @@ function populateBlog() {
             <div class="blog-content">
                 <div class="blog-meta">
                     <span><i class="fas fa-calendar"></i> ${formattedDate}</span>
-                    <span><i class="fas fa-clock"></i> ${post.readTime}</span>
                 </div>
                 <h3 class="blog-title">${post.title}</h3>
                 <p class="blog-excerpt">${post.excerpt}</p>
