@@ -276,7 +276,7 @@ function populateSkills() {
     });
 }
 
-// Populate timeline
+// Populate modern cards timeline
 function populateTimeline() {
     const timelineContainer = document.getElementById('timelineContainer');
     
@@ -289,6 +289,9 @@ function populateTimeline() {
         const timelineItem = document.createElement('div');
         timelineItem.className = 'timeline-item';
         
+        // Set data attributes for styling
+        timelineItem.setAttribute('data-type', exp.isWork ? 'work' : 'education');
+        
         const startDate = new Date(exp.startDate).toLocaleDateString('en-US', { 
             year: 'numeric', 
             month: 'short' 
@@ -299,14 +302,50 @@ function populateTimeline() {
                 month: 'short' 
             }) : 'Present';
 
+        // Icon for work vs education
+        const icon = exp.isWork ? 'fas fa-briefcase' : 'fas fa-graduation-cap';
+
         timelineItem.innerHTML = `
             <div class="timeline-content">
-                <h3>${exp.title}</h3>
-                <div class="date">${startDate} - ${endDate} | ${exp.address}</div>
-                <p>${exp.description}</p>
+                <div class="timeline-header">
+                    <div class="timeline-icon">
+                        <i class="${icon}"></i>
+                    </div>
+                    <div class="timeline-title-section">
+                        <h3>${exp.title}</h3>
+                    </div>
+                </div>
+                <div class="timeline-meta">
+                    <div class="timeline-date">${startDate} - ${endDate}</div>
+                </div>
+                <p class="timeline-description">${exp.description}</p>
             </div>
         `;
+        
         timelineContainer.appendChild(timelineItem);
+    });
+
+    // Add smooth reveal animation observer
+    observeTimelineItems();
+}
+
+// Observe timeline items for reveal animation
+function observeTimelineItems() {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animationPlayState = 'running';
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    timelineItems.forEach(item => {
+        observer.observe(item);
     });
 }
 
