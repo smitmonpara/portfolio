@@ -242,6 +242,65 @@ body::before {
     transform: translateY(-2px);
 }
 
+/* Remove splash effect for contact buttons on mobile */
+@media (hover: none) and (pointer: coarse) {
+    a[href="#contact"].btn {
+        -webkit-tap-highlight-color: transparent !important;
+        -webkit-touch-callout: none !important;
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+        user-select: none !important;
+    }
+    
+    a[href="#contact"].btn:active {
+        transform: none !important;
+        box-shadow: none !important;
+        background: var(--gradient) !important;
+    }
+    
+    a[href="#contact"].btn-secondary:active {
+        background: var(--primary-color) !important;
+        color: var(--bg-primary) !important;
+        border-color: var(--primary-color) !important;
+    }
+    
+    /* Remove splash effect for skill items on mobile */
+    .skill-item {
+        -webkit-tap-highlight-color: transparent !important;
+        -webkit-touch-callout: none !important;
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+        user-select: none !important;
+    }
+    
+    .skill-item:active {
+        transform: none !important;
+        box-shadow: none !important;
+        background: var(--bg-secondary) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+    
+    /* Remove splash effect for social media buttons on mobile */
+    .social-link {
+        -webkit-tap-highlight-color: transparent !important;
+        -webkit-touch-callout: none !important;
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+        user-select: none !important;
+    }
+    
+    .social-link:active {
+        transform: none !important;
+        box-shadow: none !important;
+        background: var(--bg-secondary) !important;
+        color: var(--text-secondary) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+}
+
 .hero-image {
     text-align: center;
     opacity: 0;
