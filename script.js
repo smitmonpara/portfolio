@@ -14,6 +14,58 @@ const portfolioData = {
         { "name": "AWS EC2" },
         { "name": "Docker" }
     ],
+    "services": [
+        {
+            "title": "Mobile App Development",
+            "description": "Building cross-platform mobile applications using Flutter with beautiful UI and seamless performance.",
+            "icon": "fas fa-mobile-alt",
+            "features": ["Cross-platform development", "Custom UI/UX design", "App store deployment", "Performance optimization"]
+        },
+        {
+            "title": "Backend Development",
+            "description": "Creating robust and scalable backend systems using Node.js, Express, and modern databases.",
+            "icon": "fas fa-server",
+            "features": ["RESTful API development", "Database design", "Authentication systems", "Cloud deployment"]
+        },
+        {
+            "title": "Full-Stack Solutions",
+            "description": "End-to-end development solutions combining mobile apps with powerful backend systems.",
+            "icon": "fas fa-code",
+            "features": ["Complete app ecosystem", "Real-time features", "Third-party integrations", "Maintenance & support"]
+        }
+    ],
+    "stats": [
+        { "number": "2+", "label": "Years Experience" },
+        { "number": "10+", "label": "Projects Completed" },
+        { "number": "5+", "label": "Happy Clients" },
+        { "number": "100%", "label": "Client Satisfaction" }
+    ],
+    "blogPosts": [
+        {
+            "title": "Getting Started with Flutter State Management",
+            "excerpt": "A comprehensive guide to managing state in Flutter applications using BLoC pattern and other popular approaches.",
+            "date": "2024-01-15",
+            "readTime": "8 min read",
+            "tags": ["Flutter", "State Management", "BLoC"],
+            "icon": "fas fa-mobile-alt"
+        },
+        {
+            "title": "Building Scalable APIs with Node.js",
+            "excerpt": "Best practices for creating robust and scalable REST APIs using Node.js, Express, and MongoDB.",
+            "date": "2024-01-08",
+            "readTime": "12 min read",
+            "tags": ["Node.js", "API", "Backend"],
+            "icon": "fab fa-node-js"
+        },
+        {
+            "title": "Mobile App Performance Optimization",
+            "excerpt": "Tips and techniques to optimize your Flutter apps for better performance and user experience.",
+            "date": "2024-01-01",
+            "readTime": "10 min read",
+            "tags": ["Flutter", "Performance", "Optimization"],
+            "icon": "fas fa-rocket"
+        }
+    ],
     "experiences": [
         {
             "title": "Bachelor of Computer Application",
@@ -106,6 +158,113 @@ const skillIcons = {
     'AWS EC2': 'fab fa-aws',
     'Docker': 'fab fa-docker'
 };
+
+// Populate services
+function populateServices() {
+    const servicesContainer = document.getElementById('servicesContainer');
+    portfolioData.services.forEach(service => {
+        const serviceElement = document.createElement('div');
+        serviceElement.className = 'service-card';
+        
+        const features = service.features.map(feature => `<li>${feature}</li>`).join('');
+        
+        serviceElement.innerHTML = `
+            <div class="service-icon">
+                <i class="${service.icon}"></i>
+            </div>
+            <h3>${service.title}</h3>
+            <p>${service.description}</p>
+            <ul class="service-features">
+                ${features}
+            </ul>
+        `;
+        servicesContainer.appendChild(serviceElement);
+    });
+}
+
+// Populate statistics
+function populateStats() {
+    const statsContainer = document.getElementById('statsContainer');
+    portfolioData.stats.forEach(stat => {
+        const statElement = document.createElement('div');
+        statElement.className = 'stat-item';
+        statElement.innerHTML = `
+            <span class="stat-number">${stat.number}</span>
+            <span class="stat-label">${stat.label}</span>
+        `;
+        statsContainer.appendChild(statElement);
+    });
+}
+
+// Populate blog posts
+function populateBlog() {
+    const blogContainer = document.getElementById('blogContainer');
+    portfolioData.blogPosts.forEach(post => {
+        const blogElement = document.createElement('div');
+        blogElement.className = 'blog-card';
+        
+        const tags = post.tags.map(tag => `<span class="blog-tag">${tag}</span>`).join('');
+        const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        
+        blogElement.innerHTML = `
+            <div class="blog-image">
+                <i class="${post.icon}"></i>
+            </div>
+            <div class="blog-content">
+                <div class="blog-meta">
+                    <span><i class="fas fa-calendar"></i> ${formattedDate}</span>
+                    <span><i class="fas fa-clock"></i> ${post.readTime}</span>
+                </div>
+                <h3 class="blog-title">${post.title}</h3>
+                <p class="blog-excerpt">${post.excerpt}</p>
+                <div class="blog-tags">
+                    ${tags}
+                </div>
+            </div>
+        `;
+        blogContainer.appendChild(blogElement);
+    });
+}
+
+// Counter animation for statistics
+function animateCounters() {
+    const counters = document.querySelectorAll('.stat-number');
+    const options = {
+        threshold: 0.7
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                const target = parseInt(counter.textContent.replace(/[^0-9]/g, ''));
+                const suffix = counter.textContent.replace(/[0-9]/g, '');
+                let current = 0;
+                const increment = target / 50;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.textContent = target + suffix;
+                        clearInterval(timer);
+                    } else {
+                        counter.textContent = Math.floor(current) + suffix;
+                    }
+                }, 40);
+                
+                observer.unobserve(counter);
+            }
+        });
+    }, options);
+
+    counters.forEach(counter => {
+        observer.observe(counter);
+    });
+}
 
 // Populate skills
 function populateSkills() {
@@ -268,7 +427,7 @@ function observeElements() {
         rootMargin: '0px 0px -50px 0px'
     });
 
-    const animatedElements = document.querySelectorAll('.timeline-item, .project-card, .skill-item');
+    const animatedElements = document.querySelectorAll('.timeline-item, .project-card, .skill-item, .service-card, .blog-card, .stat-item');
     animatedElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
@@ -338,8 +497,11 @@ function handleParallax() {
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     populateSkills();
+    populateServices();
+    populateStats();
     populateTimeline();
     populateProjects();
+    populateBlog();
     handleNavigation();
     handleScrollToTop();
     handleNavbarScroll();
@@ -361,6 +523,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Setup intersection observer for animations
     setTimeout(observeElements, 500);
+    setTimeout(animateCounters, 1000);
     
     // Add smooth scrolling to buttons
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
