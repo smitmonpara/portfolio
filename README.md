@@ -71,7 +71,7 @@ npx serve .
 - **Email**: <monparasmit1@gmail.com>
 - **Phone**: +91 9924868060
 - **Location**: Surat, Gujarat, India
-- **GitHub**: [smit13192](https://github.com/smit13192)
+- **GitHub**: [smit13192](https://github.com/smitmonpara)
 - **LinkedIn**: [smit-monpara-656341244](https://in.linkedin.com/in/smit-monpara-656341244)
 - **Instagram**: [@smit_monpara](https://www.instagram.com/smit_monpara/)
 
