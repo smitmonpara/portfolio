@@ -18,50 +18,47 @@ const portfolioData = {
         {
             "name": "Flutter",
             "category": "Mobile Development",
-            "percentage": 90,
             "description": "Expert in building cross-platform mobile applications with Flutter framework"
         },
         {
             "name": "Node.js",
             "category": "Backend Development",
-            "percentage": 85,
             "description": "Proficient in server-side development and API creation"
         },
         {
             "name": "JavaScript",
             "category": "Programming Language",
-            "percentage": 88,
             "description": "Strong foundation in modern JavaScript and ES6+ features"
         },
         {
             "name": "MongoDB",
             "category": "Database",
-            "percentage": 80,
             "description": "Experienced in NoSQL database design and optimization"
         },
         {
             "name": "Express.js",
             "category": "Backend Framework",
-            "percentage": 82,
             "description": "Skilled in building RESTful APIs and web applications"
         },
         {
             "name": "Git & GitHub",
             "category": "Version Control",
-            "percentage": 85,
             "description": "Proficient in version control and collaborative development"
         },
         {
             "name": "TypeScript",
             "category": "Programming Language",
-            "percentage": 75,
             "description": "Good understanding of type-safe JavaScript development"
         },
         {
             "name": "AWS EC2",
             "category": "Cloud Services",
-            "percentage": 70,
             "description": "Experience with cloud deployment and server management"
+        },
+        {
+            "name": "ORM",
+            "category": "Database Tools",
+            "description": "Proficient in Object-Relational Mapping for efficient database operations and data modeling"
         }
     ],
     "services": [
@@ -115,15 +112,6 @@ const portfolioData = {
     ],
     "experiences": [
         {
-            "title": "Bachelor of Computer Application",
-            "address": "Surat",
-            "description": "I have completed my BCA degree at Veer Narmad South Gujarat University.",
-            "startDate": "2021-05-01T00:00:00.000Z",
-            "endDate": "2024-05-01T00:00:00.000Z",
-            "isNow": false,
-            "isWork": false
-        },
-        {
             "title": "Flutter developer (1 year)",
             "address": "Surat",
             "description": "I am a Flutter developer at Tatvam Technology. I collaborate with team members to create numerous projects using Flutter technology for both our company and our clients. Additionally, I am learning Node.js at this company.",
@@ -140,15 +128,6 @@ const portfolioData = {
             "endDate": null,
             "isNow": true,
             "isWork": true
-        },
-        {
-            "title": "Master of Computer Application",
-            "address": "Surat",
-            "description": "I am currently pursuing my MCA degree at Manipal university jaipur, where I am enhancing my skills in advanced computing and software development.",
-            "isWork": false,
-            "startDate": "2024-07-01T00:00:00.000Z",
-            "endDate": null,
-            "isNow": true
         }
     ],
     "projects": [
@@ -203,7 +182,9 @@ const skillIcons = {
     'MongoDB': 'fas fa-database',
     'SQL': 'fas fa-database',
     'AWS EC2': 'fab fa-aws',
-    'Docker': 'fab fa-docker'
+    'Docker': 'fab fa-docker',
+    'Firebase': 'fas fa-fire',
+    'ORM': 'fas fa-layer-group'
 };
 
 // Populate services
@@ -330,53 +311,10 @@ function populateSkillsProficiency() {
                     <div class="skill-category">${skill.category}</div>
                 </div>
             </div>
-            <div class="skill-progress">
-                <div class="progress-label">
-                    <span class="progress-text">Proficiency</span>
-                    <span class="progress-percentage">${skill.percentage}%</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" data-percentage="${skill.percentage}"></div>
-                </div>
-            </div>
             <p class="skill-description">${skill.description}</p>
         `;
         
         skillsProficiencyContainer.appendChild(skillElement);
-    });
-
-    // Animate progress bars when they come into view
-    animateProgressBars();
-}
-
-// Animate progress bars
-function animateProgressBars() {
-    const progressBars = document.querySelectorAll('.skill-proficiency-item');
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const progressFill = entry.target.querySelector('.progress-fill');
-                const percentage = progressFill.getAttribute('data-percentage');
-                
-                // Add animation class
-                entry.target.classList.add('animate');
-                
-                // Animate the progress bar
-                setTimeout(() => {
-                    progressFill.style.width = percentage + '%';
-                }, 200);
-                
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.3,
-        rootMargin: '0px 0px -50px 0px'
-    });
-
-    progressBars.forEach(bar => {
-        observer.observe(bar);
     });
 }
 function populateSkills() {
