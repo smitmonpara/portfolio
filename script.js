@@ -112,7 +112,7 @@ const portfolioData = {
     ],
     "experiences": [
         {
-            "title": "Flutter developer (1 year)",
+            "title": "Junior Flutter developer",
             "address": "Surat",
             "description": "I am a Flutter developer at Tatvam Technology. I collaborate with team members to create numerous projects using Flutter technology for both our company and our clients. Additionally, I am learning Node.js at this company.",
             "startDate": "2023-01-01T00:00:00.000Z",
@@ -121,10 +121,19 @@ const portfolioData = {
             "isWork": true
         },
         {
-            "title": "Flutter developer",
+            "title": "Executive Flutter developer",
             "address": "Surat",
             "description": "I am a Flutter developer at Vasundhara Infotech, where I collaborate with team members to create numerous projects using Flutter technology for both the company and our clients.",
             "startDate": "2023-12-25T00:00:00.000Z",
+            "endDate": "2025-09-30T00:00:00.000Z",
+            "isNow": false,
+            "isWork": true
+        },
+        {
+            "title": "Senior Flutter developer",
+            "address": "Surat",
+            "description": "I am a Senior Flutter developer at Technozer Solution, A product-based company where I collaborate with team members to create numerous projects using Flutter technology.",
+            "startDate": "2025-10-01T00:00:00.000Z",
             "endDate": null,
             "isNow": true,
             "isWork": true
