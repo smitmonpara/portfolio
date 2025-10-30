@@ -128,15 +128,6 @@ const portfolioData = {
             "endDate": "2025-09-30T00:00:00.000Z",
             "isNow": false,
             "isWork": true
-        },
-        {
-            "title": "Senior Flutter developer",
-            "address": "Surat",
-            "description": "I am a Senior Flutter developer at Technozer Solution, A product-based company where I collaborate with team members to create numerous projects using Flutter technology.",
-            "startDate": "2025-10-01T00:00:00.000Z",
-            "endDate": null,
-            "isNow": true,
-            "isWork": true
         }
     ],
     "projects": [
