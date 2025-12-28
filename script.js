@@ -82,7 +82,7 @@ const portfolioData = {
         }
     ],
     "stats": [
-        { "number": "2+", "label": "Years Experience" },
+        { "number": "3+", "label": "Years Experience" },
         { "number": "10+", "label": "Projects Completed" },
         { "number": "5+", "label": "Happy Clients" },
         { "number": "100%", "label": "Client Satisfaction" }
@@ -193,9 +193,9 @@ function populateServices() {
     portfolioData.services.forEach(service => {
         const serviceElement = document.createElement('div');
         serviceElement.className = 'service-card';
-        
+
         const features = service.features.map(feature => `<li>${feature}</li>`).join('');
-        
+
         serviceElement.innerHTML = `
             <div class="service-icon">
                 <i class="${service.icon}"></i>
@@ -230,14 +230,14 @@ function populateBlog() {
     portfolioData.blogPosts.forEach(post => {
         const blogElement = document.createElement('div');
         blogElement.className = 'blog-card';
-        
+
         const tags = post.tags.map(tag => `<span class="blog-tag">${tag}</span>`).join('');
         const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
             day: 'numeric'
         });
-        
+
         blogElement.innerHTML = `
             <div class="blog-image">
                 <i class="${post.icon}"></i>
@@ -272,7 +272,7 @@ function animateCounters() {
                 const suffix = counter.textContent.replace(/[0-9]/g, '');
                 let current = 0;
                 const increment = target / 50;
-                
+
                 const timer = setInterval(() => {
                     current += increment;
                     if (current >= target) {
@@ -296,11 +296,11 @@ function animateCounters() {
 // Populate skills proficiency
 function populateSkillsProficiency() {
     const skillsProficiencyContainer = document.getElementById('skillsProficiencyContainer');
-    
+
     portfolioData.skillsProficiency.forEach((skill, index) => {
         const skillElement = document.createElement('div');
         skillElement.className = 'skill-proficiency-item';
-        
+
         skillElement.innerHTML = `
             <div class="skill-header">
                 <div class="skill-icon">
@@ -313,7 +313,7 @@ function populateSkillsProficiency() {
             </div>
             <p class="skill-description">${skill.description}</p>
         `;
-        
+
         skillsProficiencyContainer.appendChild(skillElement);
     });
 }
@@ -333,27 +333,27 @@ function populateSkills() {
 // Populate modern cards timeline
 function populateTimeline() {
     const timelineContainer = document.getElementById('timelineContainer');
-    
+
     // Sort experiences by start date (newest first)
-    const sortedExperiences = portfolioData.experiences.sort((a, b) => 
+    const sortedExperiences = portfolioData.experiences.sort((a, b) =>
         new Date(b.startDate) - new Date(a.startDate)
     );
 
     sortedExperiences.forEach((exp, index) => {
         const timelineItem = document.createElement('div');
         timelineItem.className = 'timeline-item';
-        
+
         // Set data attributes for styling
         timelineItem.setAttribute('data-type', exp.isWork ? 'work' : 'education');
-        
-        const startDate = new Date(exp.startDate).toLocaleDateString('en-US', { 
-            year: 'numeric', 
-            month: 'short' 
+
+        const startDate = new Date(exp.startDate).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short'
         });
-        const endDate = exp.endDate ? 
-            new Date(exp.endDate).toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'short' 
+        const endDate = exp.endDate ?
+            new Date(exp.endDate).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short'
             }) : 'Present';
 
         // Icon for work vs education
@@ -375,7 +375,7 @@ function populateTimeline() {
                 <p class="timeline-description">${exp.description}</p>
             </div>
         `;
-        
+
         timelineContainer.appendChild(timelineItem);
     });
 
@@ -386,7 +386,7 @@ function populateTimeline() {
 // Observe timeline items for reveal animation
 function observeTimelineItems() {
     const timelineItems = document.querySelectorAll('.timeline-item');
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -406,12 +406,12 @@ function observeTimelineItems() {
 // Populate projects
 function populateProjects() {
     const projectsContainer = document.getElementById('projectsContainer');
-    
+
     portfolioData.projects.forEach(project => {
         const projectCard = document.createElement('div');
         projectCard.className = 'project-card';
-        
-        const techTags = project.technology.map(tech => 
+
+        const techTags = project.technology.map(tech =>
             `<span class="tech-tag">${tech}</span>`
         ).join('');
 
@@ -454,9 +454,9 @@ function populateProjects() {
 function toggleMobileMenu() {
     const navLinks = document.querySelector('.nav-links');
     const mobileMenu = document.querySelector('.mobile-menu');
-    
+
     navLinks.classList.toggle('active');
-    
+
     // Animate hamburger menu
     mobileMenu.classList.toggle('active');
 }
@@ -470,12 +470,12 @@ function handleNavigation() {
             const targetId = link.getAttribute('href');
             const targetSection = document.querySelector(targetId);
             const offsetTop = targetSection.offsetTop - 70;
-            
+
             window.scrollTo({
                 top: offsetTop,
                 behavior: 'smooth'
             });
-            
+
             // Close mobile menu if open
             document.querySelector('.nav-links').classList.remove('active');
         });
@@ -566,7 +566,7 @@ function handleActiveNavigation() {
 function typeWriter(element, text, speed = 50) {
     let i = 0;
     element.innerHTML = '';
-    
+
     function type() {
         if (i < text.length) {
             element.innerHTML += text.charAt(i);
@@ -574,7 +574,7 @@ function typeWriter(element, text, speed = 50) {
             setTimeout(type, speed);
         }
     }
-    
+
     type();
 }
 
@@ -597,24 +597,24 @@ document.addEventListener('DOMContentLoaded', function() {
     handleNavbarScroll();
     handleActiveNavigation();
     handleParallax();
-    
+
     // Setup mobile menu
     document.querySelector('.mobile-menu').addEventListener('click', toggleMobileMenu);
-    
+
     // Close mobile menu when clicking outside
     document.addEventListener('click', (e) => {
         const navLinks = document.querySelector('.nav-links');
         const mobileMenu = document.querySelector('.mobile-menu');
-        
+
         if (!navLinks.contains(e.target) && !mobileMenu.contains(e.target)) {
             navLinks.classList.remove('active');
         }
     });
-    
+
     // Setup intersection observer for animations
     setTimeout(observeElements, 500);
     setTimeout(animateCounters, 1000);
-    
+
     // Add smooth scrolling to buttons
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -628,7 +628,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+
     // Add loading animation
     document.body.style.opacity = '0';
     setTimeout(() => {

@@ -61,7 +61,7 @@ npx serve .
 
 ## 🎯 Key Highlights
 
-- **2+ years** of experience in Flutter and Node.js development
+- **3+ years** of experience in Flutter and Node.js development
 - Currently pursuing **Master of Computer Application** at Manipal University Jaipur
 - Working as **Flutter Developer** at Vasundhara Infotech, Surat
 - Specialized in mobile app development and backend systems
